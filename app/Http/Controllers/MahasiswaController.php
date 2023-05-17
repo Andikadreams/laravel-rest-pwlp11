@@ -38,6 +38,7 @@ class MahasiswaController extends Controller
      */
     public function store(StoreMahasiswaRequests $request)
     {
+        // Praktikum 3
         // return response()->json('hello');
         return new MahasiswaResource(Mahasiswa::create(
             [

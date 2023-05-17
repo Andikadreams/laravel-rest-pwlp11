@@ -23,6 +23,7 @@ class StoreMahasiswaRequests extends FormRequest
      */
     public function rules()
     {
+        // Praktikum 3
         return [
             'Nim' => 'required|min:10',
             'Nama' => 'required',
