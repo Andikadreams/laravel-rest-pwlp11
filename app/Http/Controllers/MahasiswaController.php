@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreMahasiswaRequests;
 use App\Http\Resources\MahasiswaResource;
+use App\Http\Requests\StoreMahasiswaRequest;
+use App\Http\Requests\UpdateMahasiswaRequest;
 use Illuminate\Http\Request;
 use App\Models\Mahasiswa;
 class MahasiswaController extends Controller
@@ -33,9 +36,20 @@ class MahasiswaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreMahasiswaRequests $request)
     {
-        //
+        // return response()->json('hello');
+        return new MahasiswaResource(Mahasiswa::create(
+            [
+                'Nim' => $request->Nim,
+                'Nama' => $request->Nama,
+                'Foto' => $request->Foto,
+                'Jurusan' => $request->Jurusan,
+                'No_Handphone' => $request->No_Handphone,
+                'Email' => $request->Email,
+                'TTL' => $request->TTL,
+                'kelas_id' => $request->kelas_id,
+            ]));
     }
 
     /**
@@ -67,9 +81,19 @@ class MahasiswaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateMahasiswaRequest $request, Mahasiswa $mahasiswa)
     {
-        //
+        $mahasiswa->update([
+                'Nim' => $request->Nim,
+                'Nama' => $request->Nama,
+                'Foto' => $request->Foto,
+                'Jurusan' => $request->Jurusan,
+                'No_Handphone' => $request->No_Handphone,
+                'Email' => $request->Email,
+                'TTL' => $request->TTL,
+                'kelas_id' => $request->kelas_id,
+        ]);
+        return new MahasiswaResource($mahasiswa);
     }
 
     /**
