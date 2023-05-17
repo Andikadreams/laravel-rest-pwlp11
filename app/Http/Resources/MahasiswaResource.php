@@ -3,6 +3,7 @@
 namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Http\Request;
 
 class MahasiswaResource extends JsonResource
 {
@@ -14,6 +15,10 @@ class MahasiswaResource extends JsonResource
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+        return [
+            'Nim'=>$this->Nim,
+            'Nama'=>$this->Nama,
+            'Jurusan'=> strtoupper($this->Jurusan),
+        ];
     }
 }
