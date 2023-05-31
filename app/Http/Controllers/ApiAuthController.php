@@ -35,6 +35,12 @@ class ApiAuthController extends Controller
             'user' => $user,
             'token' => $token,
         ],200);
+    }
+    public function logout(Request $request){
+        // Hapus
+        $request->user()->tokens()->delete();
 
+        // Response
+        return response()->noContent();
     }
 }
