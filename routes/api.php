@@ -32,3 +32,5 @@ Route::middleware('auth:sanctum')->group(function(){
     Route::apiResource('/mahasiswa',MahasiswaController::class);
     Route::get('/logout',[ApiAuthController::class, 'logout']);
 });
+
+Route::post('/register',[ApiAuthController::class,'register']);
